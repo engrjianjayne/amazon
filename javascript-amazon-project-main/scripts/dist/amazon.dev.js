@@ -24,7 +24,11 @@ document.querySelectorAll('.js-add-to-cart').forEach(function (button) {
       });
     }
 
-    console.log(cart);
+    var cartQuantity = 0;
+    cart.forEach(function (item) {
+      cartQuantity += item.quantity;
+    });
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
   });
 });
 //# sourceMappingURL=amazon.dev.js.map
