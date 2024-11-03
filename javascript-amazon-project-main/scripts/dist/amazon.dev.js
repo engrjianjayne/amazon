@@ -11,33 +11,22 @@ _products.products.forEach(function (product) {
 });
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+function updateCartQuantity() {
+  var cartQuantity = 0;
+
+  _cart.cart.forEach(function (cartItem) {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
 document.querySelectorAll('.js-add-to-cart').forEach(function (button) {
   button.addEventListener('click', function () {
     var productId = button.dataset.productId;
-    var matchingItem;
-
-    _cart.cart.forEach(function (item) {
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-
-    if (matchingItem) {
-      matchingItem.quantity += 1;
-    } else {
-      _cart.cart.push({
-        productId: productId,
-        quantity: 1
-      });
-    }
-
-    var cartQuantity = 0;
-
-    _cart.cart.forEach(function (item) {
-      cartQuantity += item.quantity;
-    });
-
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+    (0, _cart.addToCart)(productId);
+    updateCartQuantity();
   });
 });
 //# sourceMappingURL=amazon.dev.js.map
