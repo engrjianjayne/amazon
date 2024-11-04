@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.addToCart = addToCart;
+exports.removeFromCart = removeFromCart;
 exports.cart = void 0;
 // Deduplicating data or Normalizing data
 var cart = [{
@@ -31,5 +32,15 @@ function addToCart(productId) {
       quantity: 1
     });
   }
+}
+
+function removeFromCart(productId) {
+  var newCart = [];
+  cart.forEach(function (cartItem) {
+    if (cartItem.productId !== productId) {
+      newCart.push(cartItem);
+    }
+  });
+  exports.cart = cart = newCart;
 }
 //# sourceMappingURL=cart.dev.js.map

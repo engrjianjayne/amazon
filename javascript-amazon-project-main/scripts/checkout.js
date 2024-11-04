@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, removeFromCart} from '../data/cart.js';
 import { products } from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
@@ -15,7 +15,6 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
-
 
   cartSummaryHTML += `
   <div class="cart-item-container">
@@ -51,7 +50,7 @@ cart.forEach((cartItem) => {
                 Choose a delivery option:
               </div>
               <div class="delivery-option">
-                <input type="radio" checked class="delivery-option-input" name="${matchingProduct.id}">
+                <input type="radio" checked class="delivery-option-input" name="delivery-option-${matchingProduct.id}">
                 <div>
                   <div class="delivery-option-date">
                     Tuesday, June 21
@@ -92,4 +91,10 @@ cart.forEach((cartItem) => {
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
-console.log(cartSummaryHTML);
+document.querySelectorAll('.js-delete-link').forEach((link) => {
+  link.addEventListener('click', () => {
+    const productId = link.dataset.productId;
+    removeFromCart(productId);
+  });
+});
+
