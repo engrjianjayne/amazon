@@ -17,12 +17,9 @@ var _index = _interopRequireDefault(require("https://unpkg.com/dayjs@1.11.10/esm
 
 var _deliveryOptions = require("../../data/deliveryOptions.js");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _paymentSummary = require("./paymentSummary.js");
 
-(0, _helloEsm.hello)();
-var today = (0, _index["default"])();
-var deliveryDate = today.add(7, 'days');
-console.log(deliveryDate.format('dddd, MMMM D'));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function renderOrderSummary() {
   var cartSummaryHTML = '';
@@ -60,6 +57,7 @@ function renderOrderSummary() {
       (0, _cart.removeFromCart)(productId);
       var container = document.querySelector(".js-cart-item-container-".concat(productId));
       container.remove();
+      (0, _paymentSummary.renderPaymentSummary)();
     });
   });
   document.querySelectorAll('.js-delivery-option').forEach(function (element) {
@@ -69,6 +67,7 @@ function renderOrderSummary() {
           deliveryOptionId = _element$dataset.deliveryOptionId;
       (0, _cart.updateDeliveryOption)(productId, deliveryOptionId);
       renderOrderSummary();
+      (0, _paymentSummary.renderPaymentSummary)();
     });
   });
 }
