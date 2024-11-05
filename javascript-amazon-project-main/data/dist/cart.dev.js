@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.addToCart = addToCart;
 exports.removeFromCart = removeFromCart;
+exports.updateDeliveryOption = updateDeliveryOption;
 exports.cart = void 0;
 // Deduplicating data or Normalizing data
 var cart = JSON.parse(localStorage.getItem('cart'));
@@ -55,6 +56,17 @@ function removeFromCart(productId) {
     }
   });
   exports.cart = cart = newCart;
+  saveToStorage();
+}
+
+function updateDeliveryOption(productId, deliveryOptionId) {
+  var matchingItem;
+  cart.forEach(function (cartItem) {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+  matchingItem.deliveryOptionId = deliveryOptionId;
   saveToStorage();
 }
 //# sourceMappingURL=cart.dev.js.map

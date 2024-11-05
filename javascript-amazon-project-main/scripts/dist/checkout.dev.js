@@ -54,7 +54,7 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
     var dateString = deliveryDate.format('dddd, MMMM D');
     var priceString = deliveryOption.priceCents === 0 ? 'FREE' : "$".concat((0, _money.formatCurrency)(_deliveryOptions.deliveryOptions.priceCents), " -");
     var isChecked = deliveryOption.id === cartItem.deliveryOptionId;
-    html += "\n    <div class=\"delivery-option\">\n      <input type=\"radio\"\n      ".concat(isChecked ? 'checked' : '', " \n      class=\"delivery-option-input\" name=\"delivery-option-").concat(matchingProduct.id, "\">\n      <div>\n        <div class=\"delivery-option-date\">\n          ").concat(dateString, "\n        </div>\n        <div class=\"delivery-option-price\">\n          $9.99 - Shipping\n        </div>\n      </div>\n    </div>\n    ");
+    html += "\n    <div class=\"delivery-option js-delivery-option\"\n    data-product-id=\"".concat(matchingProduct.id, "\" data-delivery-option-id=\"").concat(deliveryOption.id, "\">\n      <input type=\"radio\"\n      ").concat(isChecked ? 'checked' : '', " \n      class=\"delivery-option-input\" name=\"delivery-option-").concat(matchingProduct.id, "\">\n      <div>\n        <div class=\"delivery-option-date\">\n          ").concat(dateString, "\n        </div>\n        <div class=\"delivery-option-price\">\n          $9.99 - Shipping\n        </div>\n      </div>\n    </div>\n    ");
   });
 
   return html;
@@ -67,6 +67,14 @@ document.querySelectorAll('.js-delete-link').forEach(function (link) {
     (0, _cart.removeFromCart)(productId);
     var container = document.querySelector(".js-cart-item-container-".concat(productId));
     container.remove();
+  });
+});
+document.querySelectorAll('.js-delivery-option').forEach(function (element) {
+  element.addEventListener('click', function () {
+    var _element$dataset = element.dataset,
+        productId = _element$dataset.productId,
+        deliveryOptionId = _element$dataset.deliveryOptionId;
+    (0, _cart.updateDeliveryOption)(productId, deliveryOptionId);
   });
 });
 //# sourceMappingURL=checkout.dev.js.map
