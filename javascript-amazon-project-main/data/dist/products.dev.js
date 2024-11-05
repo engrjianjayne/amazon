@@ -3,7 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getProduct = getProduct;
 exports.products = void 0;
+
+function getProduct(productId) {
+  var matchingProduct;
+  products.forEach(function (product) {
+    if (product.id === productId) {
+      matchingProduct = product;
+    }
+  });
+  return matchingProduct;
+}
+
 var products = [{
   id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
   image: "images/products/athletic-cotton-socks-6-pairs.jpg",

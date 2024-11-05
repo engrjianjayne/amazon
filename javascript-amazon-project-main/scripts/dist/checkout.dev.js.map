@@ -1,1 +1,1 @@
-{"version":3,"sources":["checkout.js"],"names":[],"mappings":";;AAAA;;AAEA","sourcesContent":["import {renderOrderSummary} from './checkout/orderSummary.js';\r\n\r\nrenderOrderSummary();"],"file":"checkout.dev.js"}
+{"version":3,"sources":["checkout.js"],"names":[],"mappings":";;AAAA;;AACA;;AAEA;AACA","sourcesContent":["import {renderOrderSummary} from './checkout/orderSummary.js';\r\nimport {renderPaymentSummary} from './checkout/paymentSummary.js'\r\n\r\nrenderOrderSummary();\r\nrenderPaymentSummary();"],"file":"checkout.dev.js"}
