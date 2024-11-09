@@ -4,9 +4,16 @@ var _orderSummary = require("../../scripts/checkout/orderSummary.js");
 
 var _cart = require("../../data/cart.js");
 
+var _products = require("../../data/products.js");
+
 describe('test suite: renderOrderSummary', function () {
   var productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
   var productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
+  beforeAll(function (done) {
+    (0, _products.loadProducts)(function () {
+      done();
+    });
+  });
   beforeEach(function () {
     spyOn(localStorage, 'setItem');
     document.querySelector('.js-test-container').innerHTML = "\n      <div class=\"js-order-summary\"></div>\n      <div class=\"js-payment-summary\"></div>\n    ";

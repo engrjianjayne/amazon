@@ -5,7 +5,6 @@ import { formatCurrency } from './utils/money.js';
 loadProducts(renderProductsGrid);
 
 function renderProductsGrid() {
-
   let productsHTML = '';
 
     products.forEach((product) => {
