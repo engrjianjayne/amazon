@@ -10,7 +10,7 @@ describe('test suite: renderOrderSummary', function () {
   var productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
   var productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
   beforeAll(function (done) {
-    (0, _products.loadProducts)(function () {
+    (0, _products.loadProductsFetch)().then(function () {
       done();
     });
   });

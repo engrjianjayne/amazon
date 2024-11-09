@@ -10,11 +10,7 @@ var _cart = require("../data/cart.js");
 
 // import '../data/cart-class.js';
 // import '../data/backend-practice.js';
-Promise.all([new Promise(function (resolve) {
-  (0, _products.loadProducts)(function () {
-    resolve('value1');
-  });
-}), new Promise(function (resolve) {
+Promise.all([(0, _products.loadProductsFetch)(), new Promise(function (resolve) {
   (0, _cart.loadCart)(function () {
     resolve();
   });
