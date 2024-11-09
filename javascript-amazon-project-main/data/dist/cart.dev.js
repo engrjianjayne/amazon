@@ -7,6 +7,7 @@ exports.loadFromStorage = loadFromStorage;
 exports.addToCart = addToCart;
 exports.removeFromCart = removeFromCart;
 exports.updateDeliveryOption = updateDeliveryOption;
+exports.loadCart = loadCart;
 exports.cart = void 0;
 // Deduplicating data or Normalizing data
 var cart;
@@ -74,5 +75,18 @@ function updateDeliveryOption(productId, deliveryOptionId) {
   });
   matchingItem.deliveryOptionId = deliveryOptionId;
   saveToStorage();
+}
+
+function loadCart(fun) {
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', function () {
+    console.log(xhr.response);
+
+    if (typeof fun === 'function') {
+      fun();
+    }
+  });
+  xhr.open('GET', 'https://supersimplebackend.dev/cart');
+  xhr.send();
 }
 //# sourceMappingURL=cart.dev.js.map
