@@ -16,28 +16,40 @@ function loadPage() {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          _context.prev = 0;
+          _context.next = 3;
           return regeneratorRuntime.awrap((0, _products.loadProductsFetch)());
 
-        case 2:
-          _context.next = 4;
-          return regeneratorRuntime.awrap(new Promise(function (resolve) {
+        case 3:
+          _context.next = 5;
+          return regeneratorRuntime.awrap(new Promise(function (resolve, reject) {
+            //throw 'error2';
             (0, _cart.loadCart)(function () {
-              resolve('value');
+              // reject('error3');
+              resolve('value3');
             });
           }));
 
-        case 4:
+        case 5:
           value = _context.sent;
+          _context.next = 11;
+          break;
+
+        case 8:
+          _context.prev = 8;
+          _context.t0 = _context["catch"](0);
+          console.log('Unexpected error. Please try again later.');
+
+        case 11:
           (0, _orderSummary.renderOrderSummary)();
           (0, _paymentSummary.renderPaymentSummary)();
 
-        case 7:
+        case 13:
         case "end":
           return _context.stop();
       }
     }
-  });
+  }, null, null, [[0, 8]]);
 }
 
 loadPage();
